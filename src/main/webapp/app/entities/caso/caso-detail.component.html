@@ -1,0 +1,40 @@
+
+<div *ngIf="caso">
+    <h2><span jhiTranslate="testerisApp.caso.detail.title">Caso</span> {{caso.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="testerisApp.caso.nombre">Nombre</span></dt>
+        <dd>
+            <span>{{caso.nombre}}</span>
+        </dd>
+        <dt><span jhiTranslate="testerisApp.caso.descripcion">Descripcion</span></dt>
+        <dd>
+            <span>{{caso.descripcion}}</span>
+        </dd>
+        <dt><span jhiTranslate="testerisApp.caso.estado">Estado</span></dt>
+        <dd>
+            <span jhiTranslate="{{'testerisApp.Estado.' + caso.estado}}">{{caso.estado}}</span>
+        </dd>
+        <dt><span jhiTranslate="testerisApp.caso.proyecto">Proyecto</span></dt>
+        <dd>
+            <div *ngIf="caso.proyecto">
+                <a [routerLink]="['/proyecto', caso.proyecto?.id]">{{caso.proyecto?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'caso/'+ caso.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

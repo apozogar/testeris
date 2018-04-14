@@ -1,0 +1,10 @@
+{
+    "testerisApp": {
+        "Estado" : {
+            "null": "",
+            "OK": "OK",
+            "KO": "KO",
+            "NA": "NA"
+        }
+    }
+}

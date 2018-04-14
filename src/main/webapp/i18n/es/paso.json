@@ -1,0 +1,28 @@
+
+{
+    "testerisApp": {
+        "paso" : {
+            "home": {
+                "title": "Pasos",
+                "createLabel": "Crear nuevo Paso",
+                "createOrEditLabel": "Crear o editar Paso"
+            },
+            "created": "Un nuevo Paso ha sido creado con el identificador {{ param }}",
+            "updated": "Un Paso ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Paso ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Paso {{ id }}?"
+            },
+            "detail": {
+                "title": "Paso"
+            },
+            "nombre": "Nombre",
+            "descripcion": "Descripcion",
+            "numPaso": "Num Paso",
+            "resultadoEsperado": "Resultado Esperado",
+            "estado": "Estado",
+            "caso": "Caso",
+            "imagen": "Imagen"
+        }
+    }
+}

@@ -1,0 +1,26 @@
+
+{
+    "testerisApp": {
+        "caso" : {
+            "home": {
+                "title": "Casos",
+                "createLabel": "Create a new Caso",
+                "createOrEditLabel": "Create or edit a Caso"
+            },
+            "created": "A new Caso is created with identifier {{ param }}",
+            "updated": "A Caso is updated with identifier {{ param }}",
+            "deleted": "A Caso is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Caso {{ id }}?"
+            },
+            "detail": {
+                "title": "Caso"
+            },
+            "nombre": "Nombre",
+            "descripcion": "Descripcion",
+            "estado": "Estado",
+            "proyecto": "Proyecto",
+            "pasos": "Pasos"
+        }
+    }
+}

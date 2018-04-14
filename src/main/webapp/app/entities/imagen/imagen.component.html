@@ -1,0 +1,71 @@
+<div>
+    <h2>
+        <span jhiTranslate="testerisApp.imagen.home.title">Imagens</span>
+        <button class="btn btn-primary float-right jh-create-entity create-imagen" [routerLink]="['/', { outlets: { popup: ['imagen-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="testerisApp.imagen.home.createLabel">
+            Create new Imagen
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="imagens">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="testerisApp.imagen.imagen">Imagen</span></th>
+            <th><span jhiTranslate="testerisApp.imagen.nombre">Nombre</span></th>
+            <th><span jhiTranslate="testerisApp.imagen.description">Description</span></th>
+            <th><span jhiTranslate="testerisApp.imagen.paso">Paso</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let imagen of imagens ;trackBy: trackId">
+                <td><a [routerLink]="['../imagen', imagen.id ]">{{imagen.id}}</a></td>
+                <td>
+                    <a *ngIf="imagen.imagen" (click)="openFile(imagen.imagenContentType, imagen.imagen)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="imagen.imagen">{{imagen.imagenContentType}}, {{byteSize(imagen.imagen)}}</span>
+                </td>
+                <td>{{imagen.nombre}}</td>
+                <td>{{imagen.description}}</td>
+                <td>
+                    <div *ngIf="imagen.paso">
+                        <a [routerLink]="['../paso', imagen.paso?.id ]" >{{imagen.paso?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../imagen', imagen.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'imagen/'+ imagen.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'imagen/'+ imagen.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
