@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span jhiTranslate="testerisApp.paso.home.title">Pasos</span>
+        <button class="btn btn-primary float-right jh-create-entity create-paso" [routerLink]="['/', { outlets: { popup: ['paso-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="testerisApp.paso.home.createLabel">
+            Create new Paso
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="pasos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="testerisApp.paso.nombre">Nombre</span></th>
+            <th><span jhiTranslate="testerisApp.paso.descripcion">Descripcion</span></th>
+            <th><span jhiTranslate="testerisApp.paso.numPaso">Num Paso</span></th>
+            <th><span jhiTranslate="testerisApp.paso.resultadoEsperado">Resultado Esperado</span></th>
+            <th><span jhiTranslate="testerisApp.paso.estado">Estado</span></th>
+            <th><span jhiTranslate="testerisApp.paso.caso">Caso</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let paso of pasos ;trackBy: trackId">
+                <td><a [routerLink]="['../paso', paso.id ]">{{paso.id}}</a></td>
+                <td>{{paso.nombre}}</td>
+                <td>{{paso.descripcion}}</td>
+                <td>{{paso.numPaso}}</td>
+                <td>{{paso.resultadoEsperado}}</td>
+                <td jhiTranslate="{{'testerisApp.Estado.' + paso.estado}}">{{paso.estado}}</td>
+                <td>
+                    <div *ngIf="paso.caso">
+                        <a [routerLink]="['../caso', paso.caso?.id ]" >{{paso.caso?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../paso', paso.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'paso/'+ paso.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'paso/'+ paso.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

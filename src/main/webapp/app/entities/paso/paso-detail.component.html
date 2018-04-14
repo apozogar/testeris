@@ -1,0 +1,48 @@
+
+<div *ngIf="paso">
+    <h2><span jhiTranslate="testerisApp.paso.detail.title">Paso</span> {{paso.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="testerisApp.paso.nombre">Nombre</span></dt>
+        <dd>
+            <span>{{paso.nombre}}</span>
+        </dd>
+        <dt><span jhiTranslate="testerisApp.paso.descripcion">Descripcion</span></dt>
+        <dd>
+            <span>{{paso.descripcion}}</span>
+        </dd>
+        <dt><span jhiTranslate="testerisApp.paso.numPaso">Num Paso</span></dt>
+        <dd>
+            <span>{{paso.numPaso}}</span>
+        </dd>
+        <dt><span jhiTranslate="testerisApp.paso.resultadoEsperado">Resultado Esperado</span></dt>
+        <dd>
+            <span>{{paso.resultadoEsperado}}</span>
+        </dd>
+        <dt><span jhiTranslate="testerisApp.paso.estado">Estado</span></dt>
+        <dd>
+            <span jhiTranslate="{{'testerisApp.Estado.' + paso.estado}}">{{paso.estado}}</span>
+        </dd>
+        <dt><span jhiTranslate="testerisApp.paso.caso">Caso</span></dt>
+        <dd>
+            <div *ngIf="paso.caso">
+                <a [routerLink]="['/caso', paso.caso?.id]">{{paso.caso?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'paso/'+ paso.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

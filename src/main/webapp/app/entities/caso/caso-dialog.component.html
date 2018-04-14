@@ -1,0 +1,50 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCasoLabel" jhiTranslate="testerisApp.caso.home.createOrEditLabel">Create or edit a Caso</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!caso.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="caso.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="testerisApp.caso.nombre" for="field_nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="field_nombre"
+                [(ngModel)]="caso.nombre" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="testerisApp.caso.descripcion" for="field_descripcion">Descripcion</label>
+            <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+                [(ngModel)]="caso.descripcion" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="testerisApp.caso.estado" for="field_estado">Estado</label>
+            <select class="form-control" name="estado" [(ngModel)]="caso.estado" id="field_estado" >
+                <option value="OK">{{'testerisApp.Estado.OK' | translate}}</option>
+                <option value="KO">{{'testerisApp.Estado.KO' | translate}}</option>
+                <option value="NA">{{'testerisApp.Estado.NA' | translate}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="testerisApp.caso.proyecto" for="field_proyecto">Proyecto</label>
+            <select class="form-control" id="field_proyecto" name="proyecto" [(ngModel)]="caso.proyecto" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="proyectoOption.id === caso.proyecto?.id ? caso.proyecto : proyectoOption" *ngFor="let proyectoOption of proyectos; trackBy: trackProyectoById">{{proyectoOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

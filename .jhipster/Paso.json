@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "caso",
+            "otherEntityName": "caso",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "imagen",
+            "otherEntityName": "imagen",
+            "otherEntityRelationshipName": "paso"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "numPaso",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "resultadoEsperado",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "estado",
+            "fieldType": "Estado",
+            "fieldValues": "OK,KO,NA"
+        }
+    ],
+    "changelogDate": "20180414104737",
+    "entityTableName": "paso",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

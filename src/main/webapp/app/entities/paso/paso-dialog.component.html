@@ -1,0 +1,60 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPasoLabel" jhiTranslate="testerisApp.paso.home.createOrEditLabel">Create or edit a Paso</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!paso.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="paso.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="testerisApp.paso.nombre" for="field_nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="field_nombre"
+                [(ngModel)]="paso.nombre" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="testerisApp.paso.descripcion" for="field_descripcion">Descripcion</label>
+            <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+                [(ngModel)]="paso.descripcion" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="testerisApp.paso.numPaso" for="field_numPaso">Num Paso</label>
+            <input type="text" class="form-control" name="numPaso" id="field_numPaso"
+                [(ngModel)]="paso.numPaso" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="testerisApp.paso.resultadoEsperado" for="field_resultadoEsperado">Resultado Esperado</label>
+            <input type="text" class="form-control" name="resultadoEsperado" id="field_resultadoEsperado"
+                [(ngModel)]="paso.resultadoEsperado" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="testerisApp.paso.estado" for="field_estado">Estado</label>
+            <select class="form-control" name="estado" [(ngModel)]="paso.estado" id="field_estado" >
+                <option value="OK">{{'testerisApp.Estado.OK' | translate}}</option>
+                <option value="KO">{{'testerisApp.Estado.KO' | translate}}</option>
+                <option value="NA">{{'testerisApp.Estado.NA' | translate}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="testerisApp.paso.caso" for="field_caso">Caso</label>
+            <select class="form-control" id="field_caso" name="caso" [(ngModel)]="paso.caso" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="casoOption.id === paso.caso?.id ? paso.caso : casoOption" *ngFor="let casoOption of casos; trackBy: trackCasoById">{{casoOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
